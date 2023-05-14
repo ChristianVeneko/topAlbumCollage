@@ -40,7 +40,7 @@ function showImagesAlbum(albums, sizeInput) {
   albumDiv.innerHTML = "";
   albums.forEach((album) => {
     const img = document.createElement("img");
-    img.src = album.image[3]["#text"];
+    img.src = album.image[2]["#text"];
     albumDiv.appendChild(img);
   });
   createGrid(sizeInput);
