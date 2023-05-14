@@ -32,10 +32,10 @@ async function main() {
   }
 
   const albums = await fetchScrobblesAPI(userInput,timeInput, size);
-  showImagesAlbums(albums, sizeInput);
+  showImagesAlbum(albums, sizeInput);
 }
 
-function showImagesAlbums(albums, sizeInput) {
+function showImagesAlbum(albums, sizeInput) {
   const albumDiv = document.getElementById("images");
   albumDiv.innerHTML = "";
   albums.forEach((album) => {
