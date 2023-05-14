@@ -1,0 +1,43 @@
+#images {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(60px, 0fr)
+  );
+  grid-gap: 0px;
+}
+
+
+
+#images img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+input, label, select, button {
+  width: 100px;
+  height: 30px;
+}
+
+@media (max-width: 768px) {
+    #images {
+      grid-template-columns: repeat(auto-fit, minmax(40px, 0fr));
+    }
+    #images img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
+  }
+  
+  @media (max-width: 480px) {
+    #images {
+      grid-template-columns: repeat(auto-fit, minmax(30px, 0fr));
+    }
+    #images img {
+        width: 40px;
+        height: 40px;
+        object-fit: cover;
+      }
+  }
