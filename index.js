@@ -1,14 +1,12 @@
-async function fetchScrobblesAPI(userInput, timeInput, sizeInput) {
-  const apiKey = "a04b66dfea2ff907809cb5d04b2613f7";
-  const user = userInput;
-  const link = `https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=${user}&api_key=${apiKey}&period=${timeInput}&limit=${sizeInput}&format=json`;
+//importacion de las clases
+import { Music } from './Music.js';
+import { UI } from './UI.js';
 
-  return await fetch(link)
-    .then((response) => response.json())
-    .then((data) => {
-      return data.topalbums.album;
-    });
-}
+
+//instancia del objeto ui de la clase UI
+const ui = new UI();
+
+//funcion principal
 async function main() {
   const userInput = document.getElementById("inputUser").value;
   const timeInput = document.getElementById("time").value;
@@ -30,48 +28,22 @@ async function main() {
         size = 100
         break;
   }
+  //instancia del objeto musica de la clase Music
+  const music = new Music(userInput, timeInput, size);
+  
+  const albums = await music.getTopAlbums(userInput,timeInput, size);
 
-  const albums = await fetchScrobblesAPI(userInput,timeInput, size);
-  showImagesAlbum(albums, sizeInput);
-}
-
-function showImagesAlbum(albums, sizeInput) {
-  const albumDiv = document.getElementById("images");
-  albumDiv.innerHTML = "";
-  albums.forEach((album) => {
-    const img = document.createElement("img");
-    img.src = album.image[2]["#text"];
-    albumDiv.appendChild(img);
-  });
-  createGrid(sizeInput);
-}
-
-function createGrid(sizeInput){
-    const images = document.getElementById("images");
-    let fila = 0
-    let columna = 0
-    if(sizeInput == "3x3"){
-        fila = 3
-        columna = 3
-    }else if(sizeInput == "4x4"){
-        fila = 4
-        columna = 4
-    }else if(sizeInput == "5x5"){
-        fila = 5
-        columna = 5
-    }else if(sizeInput == "10x10"){
-        fila = 10
-        columna = 10
-    }
-    console.log(fila, columna)
-    images.style.gridTemplateColumns = `repeat(${columna}, 0fr)`
-    images.style.gridTemplateRows = `repeat(${fila}, 0fr)`
-
- 
+  ui.renderImages(albums, sizeInput);
+  ui.showAlbumList(albums);
 }
 
 document.getElementById("send").addEventListener("click", (e) => {
+  const userInput = document.getElementById("inputUser").value;
   const albumDiv = document.getElementById("images");
+  if(userInput === ""){
+    alert("Ingrese un usuario")
+    return
+  }
   albumDiv.innerHTML = "";
   main();
 
