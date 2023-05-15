@@ -2,6 +2,7 @@ export class UI {
   constructor() {
     this.imagesDiv = document.getElementById("images");
     this.listDiv = document.getElementById("list");
+    this.images = this.imagesDiv.getElementsByTagName("img");
   }
 
   renderImages(albums, size) {
@@ -38,8 +39,10 @@ export class UI {
     }
     this.imagesDiv.style.gridTemplateColumns = `repeat(${columna}, 0fr)`;
     this.imagesDiv.style.gridTemplateRows = `repeat(${fila}, 0fr)`;
-  }
-  showAlbumList(album) {
+    this.changeImagesProportions(fila)
+    }
+  
+  showAlbumList(album){
     this.listDiv.innerHTML = "";
     const ol = document.createElement("ol");
     album.forEach((album) => {
@@ -49,4 +52,29 @@ export class UI {
     });
     this.listDiv.appendChild(ol);
   }
-}
+
+  changeImagesProportions(fila){
+    if((fila == 3 || fila ==4 || fila == 5) && screen.width < 768){
+      for (var i = 0; i < this.images.length; i++) {
+        this.images[i].width = 80;
+        this.images[i].height = 80;
+      }
+    }else if(fila == 10 && screen.width < 768){
+      for (var i = 0; i < this.images.length; i++) {
+        this.images[i].width = 40;
+        this.images[i].height = 40;
+      }
+    }
+
+    if((fila == 3 || fila ==4 || fila == 5) && screen.width > 768){
+      for (var i = 0; i < this.images.length; i++) {
+        this.images[i].width = 90;
+        this.images[i].height = 90;
+      }
+    }else if(fila == 10 && screen.width > 768){
+      for (var i = 0; i < this.images.length; i++) {
+        this.images[i].width = 60;
+        this.images[i].height = 60;
+      }
+    }
+}}
