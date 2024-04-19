@@ -12,10 +12,10 @@ body {
   ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
   display: flex;
+  justify-content: center;
   flex-direction: column;
   align-items: center;
-  /* height: 100vh; */
-  margin-top: 0;
+  min-height: 100vh;
 
   font-family: 'Heebo', sans-serif;
 }
@@ -83,12 +83,9 @@ button:hover {
 #list {
   color: #f5f5f5;
   font-size: 20px;
-  column-count: 4;
-  column-gap: normal;
   
   margin-top: 2rem;
   margin-bottom: 2rem;
-  width: 70%;
   /* background-color: rgba(128, 128, 128, 0.253); */
 }
 
@@ -102,8 +99,6 @@ button:hover {
 
   #list {
     font-size: 18;
-    column-count: 3;
-    column-gap: normal;
     width: 80%;
   }
 }
@@ -118,7 +113,6 @@ button:hover {
 
   #list {
     font-size: 12px;
-    column-count: 2;
     width: 100%;
   }
 }
